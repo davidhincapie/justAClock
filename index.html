@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+	<title>Clock</title>
+</head>
+<body>
+
+	<div class="clock">
+		<div class="clock-face">
+			<div class="handHour hour-handSF"></div>
+			<div class="handMin min-handSF"></div>
+			<div class="handSec second-handSF"></div>
+		</div>
+		<div class="city" id="rectangle">SAN FRANCISCO</div>
+	</div>
+
+	<div class="clock">
+		<div class="clock-face">
+			<div class="handHour hour-handNY"></div>
+			<div class="handMin min-handNY"></div>
+			<div class="handSec second-handNY"></div>
+		</div>
+		<div class="city" id="rectangle">NEW YORK</div>
+	</div>
+
+	<div class="clock">
+		<div class="clock-face">
+			<div class="handHour hour-handLO"></div>
+			<div class="handMin min-handLO"></div>
+			<div class="handSec second-handLO"></div>
+		</div>
+		<div class="city" id="rectangle">LONDON</div>
+	</div>
+
+	<div class="clock">
+		<div class="clock-face">
+			<div class="handHour hour-handTO"></div>
+			<div class="handMin min-handTO"></div>
+			<div class="handSec second-handTO"></div>
+		</div>
+		<div class="city" id="rectangle">TOKYO</div>
+	</div>
+
+	<style type="text/css">
+		html {
+			background: #018DED url(http://unsplash.it/1500/1000/?random);
+			background-size: cover;
+			font-family: 'helvetica neue';
+			text-align: center;
+			font-size: 10px;
+		}
+
+		body {
+	      font-size: 2rem;
+	      display:flex;
+	      flex:1;
+	      min-height: 100vh;
+	      align-items: center;
+	    }
+
+	    .clock {
+		      width: 15rem;
+		      height: 15rem;
+		      border:10px solid #2D383A;
+		      border-radius:50%;
+		      margin:25px auto;
+		      position: relative;
+		      padding:2rem;
+		      box-shadow:
+		        0 0 0 4px rgba(0,0,0,0.1),
+		        inset 0 0 0 3px #EFEFEF,
+		        inset 0 0 10px black,
+		        0 0 10px rgba(0,0,0,0.2);
+		 }
+
+		 .city {
+		 	font-family: 'Source Sans Pro', sans-serif;
+		 	position: relative;
+		 	width: 100%;
+		    height: 100%;
+		    transform: translateY(40px);
+		 }
+
+		 #rectangle {
+		 	width: 150px;
+		 	height: 25px;
+		 	background: #F0FFFF;
+		 	border-radius: 25px;
+		 }
+
+		 .clock-face {
+		      position: relative;
+		      width: 100%;
+		      height: 100%;
+		      transform: translateY(-3px); /* account for the height of the clock hands */
+		    }
+
+		 .handHour {
+		      width:50%;
+		      height:6px;
+		      background:#C8C8CD;
+		      position: absolute;
+		      top:50%;
+		      transform-origin: 100%;
+		      transform: rotate(90deg);
+		      transition: 0.5s;
+		    }
+		 .handMin {
+		      width:50%;
+		      height:4px;
+		      background:#C8C8CD;
+		      position: absolute;
+		      top:50%;
+		      transform-origin: 100%;
+		      transform: rotate(90deg);
+		      transition: 0.5s;
+		    }
+		 .handSec {
+		      width:50%;
+		      height:1px;
+		      background: black;
+		      position: absolute;
+		      top:50%;
+		      transform-origin: 100%;
+		      transform: rotate(90deg);
+		      transition: .1s;
+		    }
+	</style>
+
+	<script>
+	//San Francisco
+		const secondHandSF = document.querySelector('.second-handSF');
+		const minsHandSF = document.querySelector('.min-handSF');
+		const hourHandSF = document.querySelector('.hour-handSF');
+		
+
+		function setDateSF() {
+			const nowSF = new Date();
+
+			const secondsSF = nowSF.getSeconds();
+			const secondsDegreesSF = ((secondsSF / 60) * 360) + 90;
+			secondHandSF.style.transform = `rotate(${secondsDegreesSF}deg)`
+
+			const minsSF = nowSF.getMinutes();
+			const minsDegreesSF = ((minsSF / 60) * 360) + 90;
+			minsHandSF.style.transform = `rotate(${minsDegreesSF}deg)`
+			
+			const hourSF = nowSF.getHours();
+			const hourDegreesSF = ((hourSF / 12) * 360) + 90;
+			hourHandSF.style.transform = `rotate(${hourDegreesSF}deg)`
+		}
+
+		setInterval(setDateSF, 1000);
+
+		//New York
+
+		const secondHandNY = document.querySelector('.second-handNY');
+		const minsHandNY = document.querySelector('.min-handNY');
+		const hourHandNY = document.querySelector('.hour-handNY');
+		
+
+		function setDateNY() {
+			const nowNY = new Date();
+
+			const secondsNY = nowNY.getSeconds();
+			const secondsDegreesNY = ((secondsNY / 60) * 360) + 90;
+			secondHandNY.style.transform = `rotate(${secondsDegreesNY}deg)`
+
+			const minsNY = nowNY.getMinutes();
+			const minsDegreesNY = ((minsNY / 60) * 360) + 90;
+			minsHandNY.style.transform = `rotate(${minsDegreesNY}deg)`
+			
+			const hourNY = nowNY.getHours() + 3;
+			const hourDegreesNY = ((hourNY / 12) * 360) + 90;
+			hourHandNY.style.transform = `rotate(${hourDegreesNY}deg)`
+		}
+
+		setInterval(setDateNY, 1000);
+		//LONDON
+
+		const secondHandLO = document.querySelector('.second-handLO');
+		const minsHandLO = document.querySelector('.min-handLO');
+		const hourHandLO = document.querySelector('.hour-handLO');
+		
+
+		function setDateLO() {
+			const nowLO = new Date();
+
+			const secondsLO = nowLO.getSeconds();
+			const secondsDegreesLO = ((secondsLO / 60) * 360) + 90;
+			secondHandLO.style.transform = `rotate(${secondsDegreesLO}deg)`
+
+			const minsLO = nowLO.getMinutes();
+			const minsDegreesLO = ((minsLO / 60) * 360) + 90;
+			minsHandLO.style.transform = `rotate(${minsDegreesLO}deg)`
+			
+			const hourLO = nowLO.getHours() + 7;
+			const hourDegreesLO = ((hourLO / 12) * 360) + 90;
+			hourHandLO.style.transform = `rotate(${hourDegreesLO}deg)`
+		}
+
+		setInterval(setDateLO, 1000);
+
+		//Tokyo
+
+		const secondHandTO = document.querySelector('.second-handTO');
+		const minsHandTO = document.querySelector('.min-handTO');
+		const hourHandTO = document.querySelector('.hour-handTO');
+		
+
+		function setDateTO() {
+			const nowTO = new Date();
+
+			const secondsTO = nowTO.getSeconds();
+			const secondsDegreesTO = ((secondsTO / 60) * 360) + 90;
+			secondHandTO.style.transform = `rotate(${secondsDegreesTO}deg)`
+
+			const minsTO = nowTO.getMinutes();
+			const minsDegreesTO = ((minsTO / 60) * 360) + 90;
+			minsHandTO.style.transform = `rotate(${minsDegreesTO}deg)`
+			
+			const hourTO = nowTO.getHours() + 17;
+			const hourDegreesTO = ((hourTO / 12) * 360) + 90;
+			hourHandTO.style.transform = `rotate(${hourDegreesTO}deg)`
+		}
+
+		setInterval(setDateTO, 1000);
+				
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
